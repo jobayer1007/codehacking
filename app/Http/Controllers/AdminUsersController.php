@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Photo;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -50,18 +51,38 @@ class AdminUsersController extends Controller
         ]);
 
             // Create User
-            $user = new user;
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->role_id = $request->input('role_id');
-            $user->is_active = $request->input('is_active');
-            $user->password = $request->input('password');
-            $user->save();
+            // $user = new user;
+            // $user->name = $request->input('name');
+            // $user->email = $request->input('email');
+            // $user->role_id = $request->input('role_id');
+            // $user->is_active = $request->input('is_active');
+            // $user->password = $request->input('password');
+            // $user->save();
+
+            // Create User Different approach
+
             // User::create($request->all());
 
-            return redirect('/admin/users');
+            // return redirect('/admin/users');
 
-        // return $request->all();
+            // return $request->all();
+
+            // Create User Different approach with photo uploding
+
+            $input = $request->all();
+
+            if($file = $request->file('photo_id')){
+                $name = time() . $file->getClientOriginalName();
+                $file->move('images', $name);
+                $photo = Photo::create(['file'=>$name]);
+                
+                $input['photo_id'] = $photo->id;
+            }
+            
+            $input['password'] = bcrypt($request->password);
+
+            User::create($input);
+            return redirect('/admin/users');
     }
 
     /**

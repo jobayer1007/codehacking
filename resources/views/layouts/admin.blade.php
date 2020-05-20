@@ -77,11 +77,13 @@
                     <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" aria-controls="userSubmenu"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
                     <ul class="collapse list-unstyled" id="userSubmenu">
                         <li>
-                            <a href="/users">All Users</a>
+                            <a href="{{route('users.index')}}">All Users</a> 
+                            {{--  --}}
                         </li>
 
                         <li>
-                            <a href="/users/create">Create User</a>
+                            <a href="{{route('users.create')}}">Create User</a>
+                            {{--  --}}
                         </li>
 
                     </ul>
@@ -280,6 +282,7 @@
 
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
 
 
 @yield('footer')

@@ -50,19 +50,16 @@
                 <option value="1">Active</option>
                 <option value="0" selected>Not Active</option>
             </select>
-            {{-- <input type="text" name="in_active" class="form-control" placeholder="Status"> --}}
-            {{-- @if ($errors->has('name'))
-                <span class="text-danger">{{ $errors->first('name') }}</span>
-            @endif --}}
+           
         </div>
 
-        {{-- <div class="form-group">
-            <label for="file">Add Picture :</label>
-            <input type="file" name="file" class="" >
+        <div class="form-group">
+            <label for="photo_id">Add Picture :</label>
+            <input type="file" name="photo_id" class="" >
             {{-- @if ($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
             @endif --}}
-        {{-- </div> --}} 
+        </div> 
 
         <div class="form-group">
             <label for="password">Password :</label>
