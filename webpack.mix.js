@@ -17,8 +17,8 @@ mix.js('resources/js/app.js', 'public/js')
 
     mix.styles([
         'resources/css/libs/blog-post.css',
-        'resources/css/libs/bootstrap.css',
-        'resources/css/libs/bootstrap.min.css',
+        // 'resources/css/libs/bootstrap.css',
+        // 'resources/css/libs/bootstrap.min.css',
         'resources/css/libs/font-awesome.css',
         'resources/css/libs/metisMenu.css',
         'resources/css/libs/sb-admin-2.css'
