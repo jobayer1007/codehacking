@@ -76,10 +76,22 @@
                 </div>
         
         
-                 <div class="form-group">
+                 <div class="form-group float-left">
                     <button type="submit" class="btn btn-primary">Update User</button>
                  </div>
-            </form>
+                </form>
+                
+                {{-- Delete Button --}}
+                <form action="{{ route('users.destroy', $user->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+    
+                    <div class="form-group float-right">
+                        <div class="form-group">
+                        <button type="submit" class="btn btn-danger">Delete User</button>
+                     </div>
+                </form>
+                {{-- ////////////// --}}
         </div>
 
         <div class="row">

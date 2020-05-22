@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\support\Facades\Session;
 use App\Http\Requests\UserRequest;
 use App\Photo;
 use App\Role;
@@ -92,7 +93,7 @@ class AdminUsersController extends Controller
             
 
             User::create($input);
-            return redirect('/admin/users');
+            return redirect('/admin/users')->with('success','The User has been Created.');
     }
 
     /**
@@ -161,7 +162,7 @@ class AdminUsersController extends Controller
         }
         
         $user->update($input);
-        return redirect('/admin/users');
+        return redirect('/admin/users')->with('success','The User has been Updated.');
 
     }
 
@@ -174,5 +175,16 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        // User::findOrFail($id)->delete();
+        $user = User::findOrFail($id);
+        
+        unlink(public_path() . $user->photo->file);
+
+        $user->delete();
+
+        // Session::flash('deleted_user', 'The User has been Deleted.');
+
+        return redirect('/admin/users')->with('success','The User has been Deleted.');
+        // return redirect('/admin/users');
     }
 }

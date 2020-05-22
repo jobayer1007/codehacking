@@ -2,6 +2,10 @@
 
 @section('content')
 
+@if (Session::has('success'))
+  <h1 class="bg-danger">{{Session('success')}}</h1>
+@endif
+
 <h1>Users</h1>
 
 <table class="table">
