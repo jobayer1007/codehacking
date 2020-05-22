@@ -13,7 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/libs.css')}}" rel="stylesheet">
-    
+
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     
 
@@ -280,11 +280,14 @@
 </div>
 <!-- /#wrapper -->
 
+
+
+{{-- <script src="https://kit.fontawesome.com/b71cc94d1f.js" crossorigin="anonymous"></script> --}}
+
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
 
-{{-- <script src="https://kit.fontawesome.com/b71cc94d1f.js" crossorigin="anonymous"></script> --}}
 
 @yield('footer')
 
