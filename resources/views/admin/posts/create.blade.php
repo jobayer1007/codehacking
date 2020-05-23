@@ -17,11 +17,11 @@
         <div class="form-group">
             <label for="category_id">Category :</label>
             <select name="category_id" class="form-control" >
-                <option value="1" selected>Choose One</option>
+                <option value="0" selected>Choose One</option>
 
-                {{-- @foreach ($roles as $role)
-                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                @endforeach --}}
+                @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
             </select>
 
         </div>

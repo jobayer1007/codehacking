@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 
 use App\Post;
-use Illuminate\Http\Request;
-use App\Http\Requests\PostsCreateRequest;
 use App\Photo;
+use App\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PostsCreateRequest;
 
 class AdminPostsController extends Controller
 {
@@ -20,7 +21,7 @@ class AdminPostsController extends Controller
     {
         //
         $posts = Post::all();
-        return view('admin.posts.index',compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -31,7 +32,11 @@ class AdminPostsController extends Controller
     public function create()
     {
         //
-        return view('admin.posts.create');
+
+        // $categories = Category::pluck('name', 'id')->all(); ///// this line have to check.. there are issues//
+        $categories = Category::all();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -47,16 +52,16 @@ class AdminPostsController extends Controller
 
         $user = Auth::user();
 
-        if($file = $request->file('photo_id')){
+        if ($file = $request->file('photo_id')) {
 
             $name = time() . $file->getClientOriginalName();
             $file->move('images', $name);
-            $photo = Photo::create(['file'=>$name]);
+            $photo = Photo::create(['file' => $name]);
 
             $input['photo_id'] = $photo->id;
         }
 
-        $user->posts()->create($input);
+        $user->posts()->Create($input);
 
         return redirect('/admin/posts');
 
