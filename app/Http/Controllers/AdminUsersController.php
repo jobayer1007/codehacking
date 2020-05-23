@@ -80,17 +80,17 @@ class AdminUsersController extends Controller
 
             // Create User Different approach with photo uploding
 
-            
+
 
             if($file = $request->file('photo_id')){
                 $name = time() . $file->getClientOriginalName();
                 $file->move('images', $name);
                 $photo = Photo::create(['file'=>$name]);
-                
+
                 $input['photo_id'] = $photo->id;
             }
-            
-            
+
+
 
             User::create($input);
             return redirect('/admin/users')->with('success','The User has been Created.');
@@ -134,7 +134,7 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $this->validate($request, [
             'name'      => "required",
             'email'     => "required",
@@ -142,8 +142,8 @@ class AdminUsersController extends Controller
             'is_active' => "required",
             // 'password'  => "required"
         ]);
-        
-        
+
+
         $user = User::findOrFail($id);
 
         if(trim($request->password) == ''){
@@ -157,10 +157,10 @@ class AdminUsersController extends Controller
             $name = time() . $file->getClientOriginalName();
             $file->move('images', $name);
             $photo = Photo::create(['file'=>$name]);
-            
+
             $input['photo_id'] = $photo->id;
         }
-        
+
         $user->update($input);
         return redirect('/admin/users')->with('success','The User has been Updated.');
 
@@ -177,7 +177,7 @@ class AdminUsersController extends Controller
         //
         // User::findOrFail($id)->delete();
         $user = User::findOrFail($id);
-        
+
         unlink(public_path() . $user->photo->file);
 
         $user->delete();
